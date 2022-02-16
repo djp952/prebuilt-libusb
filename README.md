@@ -1,4 +1,4 @@
-# LIBUSB 1.0.24   
+# LIBUSB 1.0.25   
 [https://github.com/libusb/libusb](https://github.com/libusb/libusb)   
   
 **TARGETS**   
@@ -13,7 +13,7 @@
 * android-21-x86_64 (ndk-r20b/api-21)   
    
 **BUILD ENVIRONMENT**  
-* Windows 10 x64 20H2 (19042)   
+* Windows 10 x64 20H2 (19042) or higher   
 * [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (WSL v1 recommended)   
 * [WSL Ubuntu 18.04 LTS Distro](https://www.microsoft.com/store/productId/9N9TNGVNDL3Q)   
   
@@ -38,7 +38,7 @@ wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip
 **BUILD LIBUSB (linux-i686)**   
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export CC=gcc-4.9
 export AR=gcc-ar-4.9
 export RANLIB=gcc-ranlib-4.9
@@ -55,7 +55,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBUSB (linux-x86_64)**   
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export CC=gcc-4.9
 export AR=gcc-ar-4.9
 export RANLIB=gcc-ranlib-4.9
@@ -72,7 +72,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBUSB (linux-armel)**   
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export CC=arm-linux-gnueabi-gcc-4.9
 export AR=arm-linux-gnueabi-gcc-ar-4.9
 export RANLIB=arm-linux-gnueabi-gcc-ranlib-4.9
@@ -88,7 +88,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBUSB (linux-armhf)**   
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export CC=arm-linux-gnueabihf-gcc-4.9
 export AR=arm-linux-gnueabihf-gcc-ar-4.9
 export RANLIB=arm-linux-gnueabihf-gcc-ranlib-4.9
@@ -104,7 +104,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBUSB (linux-aarch64)**   
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export CC=aarch64-linux-gnu-gcc-4.9
 export AR=aarch64-linux-gnu-gcc-ar-4.9
 export RANLIB=aarch64-linux-gnu-gcc-ranlib-4.9
@@ -120,7 +120,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBCURL (android-21-armeabi-v7a)**
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export TOOLCHAIN=$(pwd)/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64
 export AR=$TOOLCHAIN/bin/arm-linux-androideabi-ar
 export AS=$TOOLCHAIN/bin/arm-linux-androideabi-as
@@ -141,7 +141,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBCURL (android-21-arm64-v8a)**
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export TOOLCHAIN=$(pwd)/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64
 export AR=$TOOLCHAIN/bin/aarch64-linux-android-ar
 export AS=$TOOLCHAIN/bin/aarch64-linux-android-as
@@ -162,7 +162,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBCURL (android-21-x86)**
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export TOOLCHAIN=$(pwd)/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64
 export AR=$TOOLCHAIN/bin/i686-linux-android-ar
 export AS=$TOOLCHAIN/bin/i686-linux-android-as
@@ -183,7 +183,7 @@ Get libusb-1.0.a from lib/.libs
 **BUILD LIBCURL (android-21-x86_64)**
 Open "Ubuntu 18.04 LTS"   
 ```
-git clone https://github.com/libusb/libusb -b v1.0.24 --depth=1
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
 export TOOLCHAIN=$(pwd)/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64
 export AR=$TOOLCHAIN/bin/x86_64-linux-android-ar
 export AS=$TOOLCHAIN/bin/x86_64-linux-android-as
@@ -200,3 +200,4 @@ make
 ```
 Get libusb.h from libusb   
 Get libusb-1.0.a from lib/.libs   
+
