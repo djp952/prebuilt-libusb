@@ -11,6 +11,7 @@
 * android-21-arm64-v8a (ndk-r20b/api-21)   
 * android-21-x86 (ndk-r20b/api-21)   
 * android-21-x86_64 (ndk-r20b/api-21)   
+* osx-x86_64 (apple-darwin19)   
    
 **BUILD ENVIRONMENT**  
 * Windows 10 x64 20H2 (19042) or higher   
@@ -33,6 +34,24 @@ sudo apt-get install autoconf libtool make p7zip-full python
 ```
 wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip
 7z x android-ndk-r20b-linux-x86_64.zip
+```
+   
+**BUILD OSXCROSS CROSS-COMPILER**   
+* Download [Xcode 11.3.1](https://download.developer.apple.com/Developer_Tools/Xcode_11.3.1/Xcode_11.3.1.xip) __(Account required)__ to a location accessible to the WSL Ubuntu 18.04 LTS Distro
+* Open "Ubuntu 18.04 LTS"   
+```
+sudo apt-get install cmake clang llvm-dev liblzma-dev libxml2-dev uuid-dev libssl-dev libbz2-dev zlib1g-dev
+cp {Xcode_11.3.1.xip} ~/
+git clone https://github.com/tpoechtrager/osxcross --depth=1
+osxcross/tools/gen_sdk_package_pbzx.sh ~/Xcode_11.3.1.xip
+mv osxcross/MacOSX10.15.sdk.tar.xz osxcross/tarballs/
+UNATTENDED=1 osxcross/build.sh
+osxcross/build_compiler_rt.sh
+sudo mkdir -p /usr/lib/llvm-6.0/lib/clang/6.0.0/include
+sudo mkdir -p /usr/lib/llvm-6.0/lib/clang/6.0.0/lib/darwin
+sudo cp -rv $(pwd)/osxcross/build/compiler-rt/compiler-rt/include/sanitizer /usr/lib/llvm-6.0/lib/clang/6.0.0/include
+sudo cp -v $(pwd)/osxcross/build/compiler-rt/compiler-rt/build/lib/darwin/*.a /usr/lib/llvm-6.0/lib/clang/6.0.0/lib/darwin
+sudo cp -v $(pwd)/osxcross/build/compiler-rt/compiler-rt/build/lib/darwin/*.dylib /usr/lib/llvm-6.0/lib/clang/6.0.0/lib/darwin
 ```
    
 **BUILD LIBUSB (linux-i686)**   
@@ -117,7 +136,7 @@ make
 Get libusb.h from libusb   
 Get libusb-1.0.a from lib/.libs   
    
-**BUILD LIBCURL (android-21-armeabi-v7a)**
+**BUILD LIBUSB (android-21-armeabi-v7a)**
 Open "Ubuntu 18.04 LTS"   
 ```
 git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
@@ -138,7 +157,7 @@ make
 Get libusb.h from libusb   
 Get libusb-1.0.a from lib/.libs   
    
-**BUILD LIBCURL (android-21-arm64-v8a)**
+**BUILD LIBUSB (android-21-arm64-v8a)**
 Open "Ubuntu 18.04 LTS"   
 ```
 git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
@@ -159,7 +178,7 @@ make
 Get libusb.h from libusb   
 Get libusb-1.0.a from lib/.libs   
    
-**BUILD LIBCURL (android-21-x86)**
+**BUILD LIBUSB (android-21-x86)**
 Open "Ubuntu 18.04 LTS"   
 ```
 git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
@@ -180,7 +199,7 @@ make
 Get libusb.h from libusb   
 Get libusb-1.0.a from lib/.libs   
    
-**BUILD LIBCURL (android-21-x86_64)**
+**BUILD LIBUSB (android-21-x86_64)**
 Open "Ubuntu 18.04 LTS"   
 ```
 git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
@@ -200,4 +219,26 @@ make
 ```
 Get libusb.h from libusb   
 Get libusb-1.0.a from lib/.libs   
-
+   
+**BUILD LIBUSB (osx-x86_64)**   
+Open "Ubuntu 18.04 LTS"   
+```
+git clone https://github.com/libusb/libusb -b v1.0.25 --depth=1
+export PATH=$(pwd)/osxcross/target/bin:$PATH
+export CC=x86_64-apple-darwin19-clang
+export AR=x86_64-apple-darwin19-ar
+export RANLIB=x86_64-apple-darwin19-ranlib
+export CFLAGS="-mmacosx-version-min=10.9 -stdlib=libc++"
+export LIBS=-ldl
+cd libusb
+./bootstrap.sh
+./configure --host=x86_64-apple-darwin19 --with-pic --disable-udev
+OSXCROSS_NO_EXTENSION_WARNINGS=1 make
+```
+Get libusb.h from libusb   
+Get libusb-1.0.a from lib/.libs   
+   
+## ADDITIONAL LICENSE INFORMATION
+   
+**XCODE AND APPLE SDKS AGREEMENT**   
+The instructions provided above indirectly reference the use of intellectual material that is the property of Apple, Inc.  This intellectual material is not FOSS (Free and Open Source Software) and by using it you agree to be bound by the terms and conditions set forth by Apple, Inc. in the [Xcode and Apple SDKs Agreement](https://www.apple.com/legal/sla/docs/xcode.pdf).
